@@ -35,16 +35,17 @@ body{font-family:'Noto Sans JP',sans-serif;background:var(--greige-pale);min-hei
 .hero-cta:active{transform:scale(0.98)}
 .hero-note{font-size:12px;color:var(--text-muted);text-align:center;margin-top:10px}
 
-.header{width:100%;background:var(--white);border-bottom:1px solid var(--greige-light);padding:14px 24px 0;display:none;flex-direction:column;position:sticky;top:0;z-index:10}
-.header-inner{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.diagnosis-topbar{width:100%;background:var(--white);border-bottom:1px solid var(--greige-light);position:sticky;top:0;z-index:20;display:none;}
+.header{width:100%;background:transparent;border-bottom:none;padding:14px 24px 8px;display:flex;align-items:center;gap:10px;position:static;}
 .header-title{font-family:'Noto Serif JP',serif;font-size:13px;color:var(--navy);font-weight:600;letter-spacing:0.05em}
 .header-sub{font-size:11px;color:var(--text-muted);margin-top:1px}
-.header-progress{padding:0 0 10px}
-.header-progress-label{font-size:10px;color:var(--text-muted);margin-bottom:4px;display:flex;justify-content:space-between}
-.header-progress-bar{height:2px;background:var(--greige-light);border-radius:2px;overflow:hidden}
-.header-progress-fill{height:100%;background:var(--greige);border-radius:2px;transition:width 0.5s ease}
+.progress-wrap{width:100%;max-width:480px;padding:0 24px 14px;display:block;margin:0 auto;}
+.progress-label{font-size:10px;color:var(--text-muted);margin-bottom:4px;display:flex;justify-content:space-between}
+.progress-bar{height:2px;background:var(--greige-light);border-radius:2px;overflow:hidden}
+.progress-fill{height:100%;background:var(--greige);border-radius:2px;transition:width 0.5s ease}
 
-.chat-area{width:100%;max-width:480px;padding:20px 24px 0;display:none;flex-direction:column;gap:20px}
+.chat-area{width:100%;max-width:480px;padding:28px 24px 0;display:none;flex-direction:column;gap:20px}
+.chat-area::before{content:"";display:block;height:4px;flex-shrink:0}
 .komachi-row{display:flex;align-items:flex-end;gap:10px;opacity:0;transform:translateY(10px);transition:opacity 0.4s ease,transform 0.4s ease}
 .komachi-row.visible{opacity:1;transform:translateY(0)}
 .avatar{width:40px;height:40px;border-radius:50%;flex-shrink:0;border:2px solid var(--white);box-shadow:0 2px 8px rgba(0,0,0,0.1);overflow:hidden;background:var(--greige-light)}
@@ -95,19 +96,21 @@ body{font-family:'Noto Sans JP',sans-serif;background:var(--greige-pale);min-hei
   </div>
 </div>
 
-<div class="header" id="header">
-  <div class="header-inner">
+<div class="diagnosis-topbar" id="diagnosis-topbar">
+  <div class="header" id="header">
     <div>
       <div class="header-title">転職前モヤモヤ診断</div>
       <div class="header-sub">転職する前に、まず整理</div>
     </div>
   </div>
-  <div class="header-progress">
-    <div class="header-progress-label">
+  <div class="progress-wrap" id="progress-wrap">
+    <div class="progress-label">
       <span id="progress-text">Q1 / 4</span>
       <span id="progress-pct">25%</span>
     </div>
-    <div class="header-progress-bar"><div class="header-progress-fill" id="progress-fill" style="width:25%"></div></div>
+    <div class="progress-bar">
+      <div class="progress-fill" id="progress-fill" style="width:25%"></div>
+    </div>
   </div>
 </div>
 
@@ -154,9 +157,9 @@ const chatArea = document.getElementById('chat-area');
 
 function startDiagnosis() {
   document.getElementById('hero').style.display = 'none';
-  document.getElementById('header').style.display = 'flex';
+  document.getElementById('diagnosis-topbar').style.display = 'block';
   chatArea.style.display = 'flex';
-  window.scrollTo({top: 0, behavior: 'instant'});
+  window.scrollTo({top: 0, behavior: 'auto'});
   runDiagnosis();
 }
 
@@ -213,7 +216,11 @@ function addChoices(q) {
   });
 }
 
-function scrollBottom() { setTimeout(() => window.scrollTo({top:document.body.scrollHeight,behavior:'smooth'}),50); }
+function scrollBottom() {
+  setTimeout(() => {
+    window.scrollTo({top: document.documentElement.scrollHeight, behavior: 'smooth'});
+  }, 80);
+}
 
 function redirect() {
   const typeKey = (answers.q1||'A') + (answers.q2||'A');
@@ -228,7 +235,9 @@ function redirect() {
 }
 
 async function runDiagnosis() {
-  await addKomachi('はじめまして、こまちです。<br>今の状態を一緒に整理していきましょう。');
+  await addKomachi('はじめまして、こまちです。');
+  await new Promise(r=>setTimeout(r,600));
+  await addKomachi('今の状態を一緒に整理していきましょう。');
   await new Promise(r=>setTimeout(r,400));
   for(let i=0;i<questions.length;i++) {
     updateProgress(i+1);
