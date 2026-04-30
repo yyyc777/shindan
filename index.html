@@ -156,6 +156,7 @@ function startDiagnosis() {
   document.getElementById('hero').style.display = 'none';
   document.getElementById('header').style.display = 'flex';
   chatArea.style.display = 'flex';
+  window.scrollTo({top: 0, behavior: 'instant'});
   runDiagnosis();
 }
 
@@ -227,7 +228,7 @@ function redirect() {
 }
 
 async function runDiagnosis() {
-  await addKomachi('はじめまして、こまちです。<br>転職するかどうかを決める前に、今の状態を一緒に整理していきましょう。');
+  await addKomachi('はじめまして、こまちです。<br>今の状態を一緒に整理していきましょう。');
   await new Promise(r=>setTimeout(r,400));
   for(let i=0;i<questions.length;i++) {
     updateProgress(i+1);
