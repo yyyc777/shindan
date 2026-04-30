@@ -16,64 +16,59 @@
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:'Noto Sans JP',sans-serif;background:var(--greige-pale);min-height:100vh;display:flex;flex-direction:column;align-items:center;padding:0 0 80px}
 
-/* HERO */
 #hero{width:100%;max-width:480px;display:flex;flex-direction:column;align-items:center}
 .hero-img-wrap{width:100%;position:relative;overflow:hidden}
 .hero-img-wrap img{width:100%;display:block;object-fit:cover}
-.hero-overlay{position:absolute;bottom:0;left:0;right:0;background:linear-gradient(to top,rgba(44,62,92,0.88) 0%,rgba(44,62,92,0.0) 60%);padding:32px 24px 28px}
-.hero-series{font-size:11px;letter-spacing:0.15em;color:rgba(255,255,255,0.7);margin-bottom:8px;font-weight:500}
-.hero-title{font-family:'Noto Serif JP',serif;font-size:18px;color:rgba(255,255,255,0.85);font-weight:400;line-height:1.5;margin-bottom:4px}
-.hero-title-main{font-family:'Noto Serif JP',serif;font-size:24px;color:#fff;font-weight:600;line-height:1.4;margin-bottom:10px}
-.hero-sub{font-size:13px;color:rgba(255,255,255,0.8);line-height:1.7}
+.hero-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(to bottom,rgba(44,62,92,0.1) 0%,rgba(44,62,92,0.0) 25%,rgba(44,62,92,0.55) 65%,rgba(44,62,92,0.9) 100%);
+  display:flex;flex-direction:column;justify-content:flex-end;
+  padding:0 24px 28px;
+}
+.hero-series{font-size:11px;letter-spacing:0.15em;color:rgba(255,255,255,0.75);margin-bottom:6px;font-weight:500}
+.hero-title{font-family:'Noto Serif JP',serif;font-size:15px;color:rgba(255,255,255,0.9);font-weight:400;line-height:1.5;margin-bottom:4px}
+.hero-title-main{font-family:'Noto Serif JP',serif;font-size:26px;color:#fff;font-weight:600;line-height:1.3;margin-bottom:10px}
+.hero-sub{font-size:13px;color:rgba(255,255,255,0.82);line-height:1.7}
 .hero-cta-wrap{width:100%;padding:20px 24px}
 .hero-cta{display:block;width:100%;background:var(--navy);color:#fff;border:none;border-radius:14px;padding:18px;font-size:15px;font-family:'Noto Sans JP',sans-serif;font-weight:700;cursor:pointer;text-align:center;letter-spacing:0.03em;transition:background 0.2s,transform 0.15s}
 .hero-cta:hover{background:var(--navy-light);transform:translateY(-1px)}
 .hero-cta:active{transform:scale(0.98)}
 .hero-note{font-size:12px;color:var(--text-muted);text-align:center;margin-top:10px}
 
-/* HEADER */
 .header{width:100%;background:var(--white);border-bottom:1px solid var(--greige-light);padding:14px 24px;display:none;align-items:center;gap:10px;position:sticky;top:0;z-index:10}
 .header-title{font-family:'Noto Serif JP',serif;font-size:13px;color:var(--navy);font-weight:600;letter-spacing:0.05em}
 .header-sub{font-size:11px;color:var(--text-muted);margin-top:1px}
 
-/* PROGRESS */
 .progress-wrap{width:100%;max-width:480px;padding:16px 24px 0;display:none}
 .progress-label{font-size:11px;color:var(--text-muted);margin-bottom:6px;display:flex;justify-content:space-between}
 .progress-bar{height:3px;background:var(--greige-light);border-radius:2px;overflow:hidden}
 .progress-fill{height:100%;background:var(--greige);border-radius:2px;transition:width 0.5s ease}
 
-/* CHAT */
 .chat-area{width:100%;max-width:480px;padding:20px 24px 0;display:none;flex-direction:column;gap:20px}
-
 .komachi-row{display:flex;align-items:flex-end;gap:10px;opacity:0;transform:translateY(10px);transition:opacity 0.4s ease,transform 0.4s ease}
 .komachi-row.visible{opacity:1;transform:translateY(0)}
 .avatar{width:40px;height:40px;border-radius:50%;flex-shrink:0;border:2px solid var(--white);box-shadow:0 2px 8px rgba(0,0,0,0.1);overflow:hidden;background:var(--greige-light)}
 .avatar img{width:100%;height:100%;object-fit:cover}
 .komachi-bubble{background:var(--komachi-bubble);border:1px solid var(--greige-light);border-radius:18px 18px 18px 4px;padding:14px 18px;font-size:15px;line-height:1.7;color:var(--text);max-width:calc(100% - 56px)}
 .komachi-name{font-size:10px;color:var(--text-muted);margin-bottom:4px;font-weight:500}
-
 .choices-row{display:flex;flex-direction:column;gap:10px;padding-left:50px;opacity:0;transform:translateY(8px);transition:opacity 0.4s ease 0.2s,transform 0.4s ease 0.2s}
 .choices-row.visible{opacity:1;transform:translateY(0)}
 .choice-btn{background:var(--white);border:1.5px solid var(--greige);border-radius:12px 12px 12px 4px;padding:14px 18px;font-size:14px;font-family:'Noto Sans JP',sans-serif;color:var(--text);cursor:pointer;text-align:left;line-height:1.6;transition:all 0.2s ease}
 .choice-btn:hover{background:var(--greige-pale);transform:translateX(3px)}
 .choice-btn:active{transform:scale(0.98)}
 .choice-btn.selected{background:var(--user-bubble);border-color:var(--navy-light);color:var(--navy)}
-
 .user-row{display:flex;justify-content:flex-end;opacity:0;transform:translateY(8px);transition:opacity 0.35s ease,transform 0.35s ease}
 .user-row.visible{opacity:1;transform:translateY(0)}
 .user-bubble{background:var(--navy);color:#fff;border-radius:18px 18px 4px 18px;padding:12px 18px;font-size:14px;line-height:1.6;max-width:80%}
-
 .choices-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding-left:50px;opacity:0;transform:translateY(8px);transition:opacity 0.4s ease 0.2s,transform 0.4s ease 0.2s}
 .choices-grid.visible{opacity:1;transform:translateY(0)}
 .choices-grid .choice-btn{border-radius:10px;font-size:13px;padding:12px 14px}
-
 .typing{display:flex;gap:4px;padding:14px 18px;background:var(--komachi-bubble);border:1px solid var(--greige-light);border-radius:18px 18px 18px 4px;width:fit-content}
 .typing span{width:6px;height:6px;background:var(--greige);border-radius:50%;animation:dot 1.2s infinite}
 .typing span:nth-child(2){animation-delay:0.2s}
 .typing span:nth-child(3){animation-delay:0.4s}
 @keyframes dot{0%,60%,100%{transform:translateY(0);opacity:0.4}30%{transform:translateY(-4px);opacity:1}}
 
-/* LOADING（リダイレクト中） */
 .loading{width:100%;max-width:480px;padding:48px 24px;display:none;flex-direction:column;align-items:center;gap:16px}
 .loading-dots{display:flex;gap:8px}
 .loading-dots span{width:8px;height:8px;background:var(--greige);border-radius:50%;animation:dot 1.2s infinite}
@@ -84,12 +79,11 @@ body{font-family:'Noto Sans JP',sans-serif;background:var(--greige-pale);min-hei
 </head>
 <body>
 
-<!-- HERO -->
 <div id="hero">
   <div class="hero-img-wrap">
-    <img src="images/keyvisual.png" alt="こまちとイチさん">
+    <img src="images/keyvisual.webp" alt="こまちとイチさん" width="1080" height="1080" fetchpriority="high">
     <div class="hero-overlay">
-      <div class="hero-series">仕事、辞めていいですか。</div>
+      <div class="hero-series">転職の前に読む漫画</div>
       <div class="hero-title">今の仕事、このままでいい？</div>
       <div class="hero-title-main">転職前のモヤモヤ診断</div>
       <div class="hero-sub">4つの質問で、今のあなたの状態を一緒に整理します。</div>
@@ -101,11 +95,10 @@ body{font-family:'Noto Sans JP',sans-serif;background:var(--greige-pale);min-hei
   </div>
 </div>
 
-<!-- HEADER（診断中） -->
 <div class="header" id="header">
   <div>
     <div class="header-title">転職前モヤモヤ診断</div>
-    <div class="header-sub">こまちとイチさんのお仕事診断</div>
+    <div class="header-sub">転職する前に、まず整理</div>
   </div>
 </div>
 
@@ -119,7 +112,6 @@ body{font-family:'Noto Sans JP',sans-serif;background:var(--greige-pale);min-hei
 
 <div class="chat-area" id="chat-area"></div>
 
-<!-- リダイレクト中表示 -->
 <div class="loading" id="loading">
   <div class="loading-dots"><span></span><span></span><span></span></div>
   <div class="loading-text">結果を準備しています…</div>
@@ -131,11 +123,11 @@ const questions = [
     {label:'なんとなくモヤモヤしています',value:'A'},
     {label:'はい、わかっています',value:'B'}
   ]},
-  {id:'q2',text:'転職に向けて、動き始めていますか？',type:'binary',choices:[
+  {id:'q2',text:'今の状況を変えるために、何か動き始めていますか？',type:'binary',choices:[
     {label:'まだ一歩が出ていません',value:'A'},
-    {label:'情報収集など始めています',value:'B'}
+    {label:'情報収集などは始めています',value:'B'}
   ]},
-  {id:'q3',text:'一番気になっていることを教えてください',type:'grid',choices:[
+  {id:'q3',text:'今、一番気になっていることを教えてください',type:'grid',choices:[
     {label:'収入や生活のこと',value:'A'},
     {label:'次の仕事が見つかるか',value:'B'},
     {label:'職場に言い出せない',value:'C'},
@@ -149,7 +141,6 @@ const questions = [
   ]}
 ];
 
-// STUDIOの結果ページURLが確定したら差し替える
 const resultURLs = {
   BB: 'https://koma-ichi.com/result/junbi',
   AB: 'https://koma-ichi.com/result/seiri',
@@ -179,20 +170,16 @@ function addKomachi(text) {
   return new Promise(resolve => {
     const typingRow = document.createElement('div');
     typingRow.className = 'komachi-row visible';
-    typingRow.innerHTML = '<div class="avatar"><img src="images/icon_komachi.png" alt="こまち"></div><div class="typing"><span></span><span></span><span></span></div>';
+    typingRow.innerHTML = '<div class="avatar"><img src="images/icon_komachi.webp" alt="こまち" width="40" height="40" loading="lazy" decoding="async"></div><div class="typing"><span></span><span></span><span></span></div>';
     chatArea.appendChild(typingRow);
     scrollBottom();
     setTimeout(() => {
       typingRow.remove();
       const row = document.createElement('div');
       row.className = 'komachi-row';
-      row.innerHTML = '<div class="avatar"><img src="images/icon_komachi.png" alt="こまち"></div><div class="komachi-bubble"><div class="komachi-name">こまち</div>'+text+'</div>';
+      row.innerHTML = '<div class="avatar"><img src="images/icon_komachi.webp" alt="こまち" width="40" height="40" loading="lazy" decoding="async"></div><div class="komachi-bubble"><div class="komachi-name">こまち</div>'+text+'</div>';
       chatArea.appendChild(row);
-      requestAnimationFrame(() => requestAnimationFrame(() => {
-        row.classList.add('visible');
-        scrollBottom();
-        resolve();
-      }));
+      requestAnimationFrame(() => requestAnimationFrame(() => { row.classList.add('visible'); scrollBottom(); resolve(); }));
     }, 900);
   });
 }
@@ -207,55 +194,40 @@ function addChoices(q) {
       btn.className = 'choice-btn';
       btn.textContent = c.label;
       btn.addEventListener('click', () => {
-        wrap.querySelectorAll('.choice-btn').forEach(b => {
-          b.disabled=true;
-          b.style.opacity='0.4';
-          b.style.cursor='default';
-          b.style.transform='none';
-        });
-        btn.style.opacity='1';
-        btn.classList.add('selected');
+        wrap.querySelectorAll('.choice-btn').forEach(b => { b.disabled=true; b.style.opacity='0.4'; b.style.cursor='default'; b.style.transform='none'; });
+        btn.style.opacity='1'; btn.classList.add('selected');
         answers[q.id] = c.value;
         setTimeout(() => {
           const userRow = document.createElement('div');
           userRow.className = 'user-row';
           userRow.innerHTML = '<div class="user-bubble">'+c.label+'</div>';
           chatArea.appendChild(userRow);
-          requestAnimationFrame(() => requestAnimationFrame(() => {
-            userRow.classList.add('visible');
-            scrollBottom();
-            resolve(c.value);
-          }));
+          requestAnimationFrame(() => requestAnimationFrame(() => { userRow.classList.add('visible'); scrollBottom(); resolve(c.value); }));
         }, 200);
       });
       wrap.appendChild(btn);
     });
     chatArea.appendChild(wrap);
-    requestAnimationFrame(() => requestAnimationFrame(() => {
-      wrap.classList.add('visible');
-      scrollBottom();
-    }));
+    requestAnimationFrame(() => requestAnimationFrame(() => { wrap.classList.add('visible'); scrollBottom(); }));
   });
 }
 
-function scrollBottom() {
-  setTimeout(() => window.scrollTo({top:document.body.scrollHeight,behavior:'smooth'}),50);
-}
+function scrollBottom() { setTimeout(() => window.scrollTo({top:document.body.scrollHeight,behavior:'smooth'}),50); }
 
 function redirect() {
   const typeKey = (answers.q1||'A') + (answers.q2||'A');
+  const q3 = answers.q3 || 'A';
   const q4 = answers.q4 || 'A';
   const base = resultURLs[typeKey] || resultURLs['AA'];
   chatArea.style.display = 'none';
   document.getElementById('loading').style.display = 'flex';
   scrollBottom();
-  setTimeout(() => {
-    window.location.href = base + '?q4=' + q4;
-  }, 1200);
+  const params = new URLSearchParams({q3:q3, q4:q4});
+  setTimeout(() => { window.location.href = base + '?' + params.toString(); }, 1200);
 }
 
 async function runDiagnosis() {
-  await addKomachi('はじめまして、こまちです。<br>4つの質問に答えるだけで、今のあなたに合った「次の一歩」をお伝えします。');
+  await addKomachi('はじめまして、こまちです。<br>転職するかどうかを決める前に、今の状態を一緒に整理していきましょう。');
   await new Promise(r=>setTimeout(r,400));
   for(let i=0;i<questions.length;i++) {
     updateProgress(i+1);
